@@ -1,0 +1,18 @@
+/* Modern SASS syntax */
+@use "minima" as *;
+
+/* Your custom styles */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons img {
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.social-icons img:hover {
+    opacity: 1;
+}

@@ -1,0 +1,30 @@
+// Base variables
+$brand-color: #2a7ae2 !default;
+$text-color: #111 !default;
+$grey-color: #828282 !default;
+
+// Modern color adjustments
+$grey-color-light: color.adjust($grey-color, $lightness: 40%);
+$grey-color-dark: color.adjust($grey-color, $lightness: -25%);
+
+// Import modern modules
+@use "sass:color";
+
+// Base styles
+body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+    color: $text-color;
+    line-height: 1.6;
+}
+
+a {
+    color: $brand-color;
+    text-decoration: none;
+
+    &:hover {
+        color: color.adjust($brand-color, $lightness: -15%);
+        text-decoration: underline;
+    }
+}
+
+// Your additional styles...
