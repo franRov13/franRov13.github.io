@@ -1,4 +1,4 @@
-// import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import SocialIcons from "@/components/SocialIcons";
 
@@ -28,10 +28,13 @@ export default function Home() {
             <SocialIcons />
           </div>
           <div className="flex justify-center">
-            {/* Add your profile image here */}
-            <div className="w-72 h-72 rounded-full bg-gray-200 flex items-center justify-center">
-              Profile Image
-            </div>
+            <Image
+              src="/images/profile.png"
+              alt="Francisco Rovira"
+              width={300}
+              height={300}
+              className="rounded-full shadow-lg"
+            />
           </div>
         </section>
         

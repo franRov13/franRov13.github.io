@@ -1,5 +1,5 @@
 import Link from 'next/link';
-// import Image from 'next/image';
+import Image from 'next/image';
 
 export default function SocialIcons() {
   const socialLinks = [
@@ -21,11 +21,12 @@ export default function SocialIcons() {
           className="text-foreground hover:opacity-80 transition-opacity"
         >
           <span className="sr-only">{social.name}</span>
-          {/* You'll need to add these icons to your public/icons directory */}
-          {/* For now using placeholder sizing */}
-          <div className="w-6 h-6">
-            {social.icon}
-          </div>
+          <Image 
+            src={social.icon} 
+            alt={social.name} 
+            width={24} 
+            height={24} 
+          />
         </Link>
       ))}
     </div>
