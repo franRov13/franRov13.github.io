@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import SocialIcons from "@/components/SocialIcons";
+import SocialIcons from "@/components/social-icons";
 
 export default function Home() {
   return (
@@ -41,7 +41,6 @@ export default function Home() {
         <section className="mt-12">
           <h2 className="text-2xl font-bold mb-4">Featured Projects</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Project cards */}
             <ProjectCard 
               title="Crypto Dashboard" 
               description="Interactive cryptocurrency tracking application"
