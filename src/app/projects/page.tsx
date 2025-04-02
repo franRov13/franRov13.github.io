@@ -3,13 +3,6 @@ import Link from "next/link";
 export default function Projects() {
   const projects = [
     {
-      title: "Activism",
-      description: "A web platform focused on connecting activists with causes.",
-      tags: ["React", "JavaScript", "CSS"],
-      link: "https://github.com/franRov13/ActivismWebPage.git",
-      category: "Websites",
-    },
-    {
       title: "Crypto Dashboard",
       description: "Real-time cryptocurrency tracking dashboard with market insights.",
       tags: ["React", "API Integration", "Data Visualization"],
