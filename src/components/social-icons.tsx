@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function SocialIcons() {
   const socialLinks = [
-    { name: 'Twitter', url: 'https://twitter.com/franRov13', icon: '/icons/twitter.svg' },
+    { name: 'X', url: 'https://x.com/franRov13', icon: '/icons/x.svg' },
     { name: 'YouTube', url: 'https://www.youtube.com/@ogdmaster215/about', icon: '/icons/youtube.svg' },
     { name: 'Instagram', url: 'https://www.instagram.com/fran_rov1/', icon: '/icons/instagram.svg' },
     { name: 'LinkedIn', url: 'https://www.linkedin.com/in/francisco-a-rovira-landron-9b5136226/', icon: '/icons/linkedin.svg' },
