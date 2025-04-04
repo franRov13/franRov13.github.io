@@ -1,7 +1,22 @@
+"use client"
+
 import Link from "next/link";
+// import { Menu, Transition } from '@headlessui/react'
+import {Menu, MenuItems, MenuButton, Transition} from "@headlessui/react"
+import { Fragment, useState } from 'react'
+
+interface Project {
+  title: string; 
+  description: string; 
+  tags: string[]; 
+  link: string; 
+  category: string; 
+}
 
 export default function Projects() {
-  const projects = [
+  const [activeCategory, setActiveCategory] = useState<string | null>(null); 
+
+  const projects: Project[] = [
     {
       title: "Crypto Dashboard",
       description: "Real-time cryptocurrency tracking dashboard with market insights.",
@@ -39,7 +54,6 @@ export default function Projects() {
     },
   ];
 
-  // Group projects by category
   const categories = projects.reduce((acc, project) => {
     if (!acc[project.category]) {
       acc[project.category] = [];
@@ -48,11 +62,35 @@ export default function Projects() {
     return acc;
   }, {} as Record<string, typeof projects>);
 
+  const filteredCategories = activeCategory
+    ? { [activeCategory]: categories[activeCategory] }
+    : categories;
+
   return (
     <div className="container mx-auto p-8 max-w-5xl">
-      <h1 className="text-3xl font-bold mb-8">Projects</h1>
+      {/** Header Area */}
+      <div className="flex justify-between items-center mb-8">
+        {/** Title */}
+        <h1 className="text-5xl font-bold">Projects</h1>
+        {/** Nav group on the right side */}
+          <div className="flex items-center gap-4">
+            {/** Categories Button */}
+            <CategoryFilter 
+            categories={categories}
+            activeCategory={activeCategory}
+            setActiveCategory={setActiveCategory}
+            />
+            {/** Back to Home */}
+            <Link
+              href="/"
+              className="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-sm font-medium"
+          >
+              Home
+            </Link>
+          </div>
+        </div>
 
-      {Object.entries(categories).map(([category, categoryProjects]) => (
+      {Object.entries(filteredCategories).map(([category, categoryProjects]) => (
         <section key={category} className="mb-12">
           <h2 className="text-2xl font-bold mb-6">{category}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -83,10 +121,60 @@ export default function Projects() {
           </div>
         </section>
       ))}
-      
-      <div className="mt-8">
-        <Link href="/" className="text-blue-600 hover:underline">← Back to Home</Link>
-      </div>
     </div>
+  );
+}
+
+function CategoryFilter({ 
+  categories, 
+  activeCategory, 
+  setActiveCategory 
+}: { 
+  categories: Record<string, Project[]>;
+  activeCategory: string | null;
+  setActiveCategory: (category: string | null) => void;
+}) {
+  return (
+    <Menu as="div" className="relative inline-block text-left">
+      <div>
+        <MenuButton className="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-sm font-medium">
+          {activeCategory || 'Categories'}
+          {activeCategory && (
+            <span className="ml-1 text-xs text-indigo-600 dark:text-indigo-400">
+              ({categories[activeCategory].length})
+            </span>
+          )}
+        </MenuButton>
+      </div>
+      <Transition
+        as={Fragment}
+        enter="transition ease-out duration-100"
+        enterFrom="transform opacity-0 scale-95"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-75"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-95"
+      >
+        <MenuItems className="absolute right-0 mt-2 w-56 origin-top-right bg-white dark:bg-gray-800 rounded shadow-lg z-10">
+          <div className="py-1">
+            <button
+              className="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 w-full text-left px-4 py-2 text-sm"
+              onClick={() => setActiveCategory(null)}
+            >
+              All Categories
+            </button>
+            {Object.keys(categories).map((category) => (
+              <button
+                key={category}
+                className="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 w-full text-left px-4 py-2 text-sm"
+                onClick={() => setActiveCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </MenuItems>
+      </Transition>
+    </Menu>
   );
 }

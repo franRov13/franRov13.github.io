@@ -12,9 +12,30 @@ export default function Home() {
         <div className="flex items-center space-x-6">
           <nav>
             <ul className="flex space-x-8">
-              <li><Link href="/" className="hover:underline">Home</Link></li>
-              <li><Link href="/about" className="hover:underline">About</Link></li>
-              <li><Link href="/projects" className="hover:underline">Projects</Link></li>
+              <li>
+                <Link 
+                  href="/" 
+                  className="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-sm font-medium"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/about" 
+                  className="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-sm font-medium"
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/projects" 
+                  className="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-sm font-medium"
+                >
+                  Projects
+                </Link>
+              </li>
             </ul>
           </nav>
           <ThemeToggle />
